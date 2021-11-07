@@ -13,7 +13,10 @@ with "Hello {name}!"
     </head>
     <body>
         <form method="POST">
-            What's your name? <input type="text" name="name-input"><br>
+            From <input type="text" name="from" value="sender@hrzn.lv"><br>
+            To <input type="text" name="to" value="aka65@inbox.lv"><br>
+            Subjet <input type="text" name="subjet" value="Hello!"><br>
+            Message <input type="text" name="message" value="Message Hello!"><br>
             <button type="submit">Submit</button>
         </form>
         <p>{{message}}</p>
