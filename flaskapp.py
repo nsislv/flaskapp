@@ -17,12 +17,17 @@ def index():
         sender = flask.request.form['from']
         recipients = flask.request.form['to']
         msg = flask.request.form['message']
-    
+        
         # Create SMTP object
         server = smtplib.SMTP(host='localhost')
-        server.sendmail(sender, recipients, msg.as_string())
-        server.quit()
-        return flask.render_template('index.html')
+        try:
+          server.sendmail(sender, recipients, msg)
+          server.quit()
+          message = 'Success!'
+          return flask.render_template('index.html', message=message)
+        except smtplib.SMTPException as error:  
+          message = 'Error - {err}'.format(err=error)
+          return flask.render_template('index.html', message=message)
       
     return flask.render_template('index.html')
 
